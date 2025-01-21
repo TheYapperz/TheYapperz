@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheYapperz Podcast</title>
+    <link rel="icon" type="theyapperzpodcast" sizes="32x32" href="TheYapperzLogo.png">
+    <style>
+        :root {
+            --primary-color: orange;
+            --secondary-color: blue;
+            --background-color: white;
+        }
+
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--secondary-color);
+            scroll-behavior: smooth;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--primary-color);
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--background-color);
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            list-style: none;
+            flex-wrap: wrap; /* Allows items to wrap to the next line */
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            font-size: 1rem; /* Adjust text size for smaller screens */
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--background-color);
+            font-weight: bold;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        /* Underline Animation for Links */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--background-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 40px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .orange-background {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        .white-background {
+            background-color: var(--background-color);
+            color: var(--secondary-color);
+            text-align: center;
+            margin-left: 0.5%;
+        }
+
+        /* Banner Section */
+        .banner {
+            background-image: url('https://yt3.googleusercontent.com/s4_dog4fxbcpMNPncjZWzgV07Ff4JD9uTQMcgzeGNiT9Px1IQA1WOQlCGHzQQpsaHFDllSHn=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner h2 {
+            font-size: 2.5rem;
+            color: var(--background-color);
+            animation: fadeIn 1s ease;
+            color: black;
+        }
+
+        .banner button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 10px;
+            color: var(--background-color);
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .banner button:hover {
+            transform: scale(1.1);
+            background-color: darkblue;
+        }
+
+        /* Featured Episodes */
+        .episodes-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .episode {
+            background-color: var(--background-color);
+            color: var(--secondary-color);
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            transition: transform 0.3s ease;
+        }
+
+        .episode:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .episode img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .episodes-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: var(--background-color);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .episodes-button:hover {
+            background-color: darkblue;
+            transform: scale(1.1);
+        }
+
+        /* Footer Styles */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        footer ul {
+            list-style: none;
+            flex-direction: column; /* Stack items vertically on smaller screens */
+            padding: 0;
+            margin: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer ul li a {
+            color: var(--background-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: darkblue;
+        }
+
+        footer .logo {
+            font-weight: bold;
+            font-size: 2rem;
+            text-align: center;
+            margin-left: 5%;
+        }
+
+        footer img {
+            max-width: 130px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        header, footer {
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none;    /* For Firefox */
+    -ms-user-select: none;     /* For Internet Explorer */
+    user-select: none;         /* Standard Property */
+}
+
+.ask-question {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--secondary-color);
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            margin-left: 34%;
+        }
+
+        .ask-question button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .ask-question button:hover {
+            background-color: darkorange;
+        }
+        .ask-question button:hover {
+            background-color: darkorange;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>TheYapperz</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="episodes.html">Episodes</a></li>
+                <li><a href="questions.html">Ask your Question</a></li>
+                <li><a href="quizzes.html">Quizzes</a></li>
+                <li><a href="partners.html">Partners & Sponsors</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Banner Section -->
+        <section class="banner white-background">
+            <div>
+                <h2>Watch our weekly podcast here on this Website</h2>
+                <button onclick="location.href='episodes.html'">View Episodes</button>
+            </div>
+        </section>
+
+        <!-- Featured Episodes Section -->
+        <section class="orange-background">
+            <h2>Featured Episodes</h2>
+            <div class="episodes-container">
+                <div class="episode">
+                    <img src="https://i.ytimg.com/vi/D-8b0r7XdME/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBJGkeYYWW-dSN5hpS7DxzWMlqH3A" alt="Episode 1 Thumbnail">
+                    <h3>Episode 1: Discussing Marcellus Williams, World War III and Israel-Lebanon conflict</h3>
+                    <p>Season 1, Episode 1</p>
+                </div>
+                <div class="episode">
+                    <img src="https://i.ytimg.com/vi/3vwbjsKl7fw/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLC9fGJuxOQMdOwnBtp2iHU2fH-A0Q" alt="Episode 2 Thumbnail">
+                    <h3>Episode 2: Lebanon's Crisis Unveiled: Insightful Talks on Islam, Religion & Fun Quizzes!</h3>
+                    <p>Season 1, Episode 2</p>
+                </div>
+                <div class="episode">
+                    <img src="https://i.ytimg.com/vi/o1zIXa3nhe8/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLD--NVj2qqYcX9W82P7IlKUFfz_NA" alt="Episode 3 Thumbnail">
+                    <h3>Episode 3: The Assault on Al-Aqsa Hospital: A Podcast on the Crisis in Gaza</h3>
+                    <p>Season 1, Episode 3</p>
+                </div>
+            </div>
+            <button class="episodes-button" onclick="location.href='episodes.html'">More Episodes</button>
+        </section>
+
+        <!-- About Us Section -->
+        <section class="white-background">
+            <h2>About Us</h2>
+            <p>Welcome to TheYapperz, a vibrant and engaging podcast that combines laughter, humility, and thought-provoking discussions—all through a halal lens. Hosted by Adel, Saleem, and Jay, TheYapperz takes you on an exciting journey filled with fun games, lighthearted quizzes, and engaging interactions among the hosts and special guests.
+
+                Our podcast is a breath of fresh air in the Muslim podcasting space, providing a perfect mix of entertainment and values. Whether it's sharing stories, tackling meaningful topics, or simply having a laugh, TheYapperz ensures there's something for everyone. Rooted in humility and a passion for spreading positivity, we aim to inspire and connect with listeners from all walks of life.
+                
+                Join us for episodes full of joy, camaraderie, and insightful conversations, all while keeping things light, funny, and entirely halal. Let’s yap together—because everyone loves a good laugh and meaningful chats!</p>
+        </section>
+    </main>
+
+            <!-- Ask a Question Section -->
+            <div class="ask-question">
+                <h2>Have a Question for the Hosts?</h2>
+                <p>If you have any questions or topics you'd like the hosts to discuss, let us know! We’d love to hear from you.</p>
+                <button onclick="window.location.href='questions.html'">Ask Your Question</button>
+            </div>
+        </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <ul>
+            <h3>Follow us on:</h3>
+            <li><a href="https://x.com/theyapperz" target="_blank">X (Twitter)</a></li>
+            <li><a href="https://www.instagram.com/theyapperz/" target="_blank">Instagram</a></li>
+            <li><a href="https://www.youtube.com/@theyapperzpodcast/videos" target="_blank">YouTube</a></li>
+            <li><a href="https://www.tiktok.com/@theyapperz?lang=en" target="_blank">TikTok</a></li>
+        </ul>
+        <div class="logo">TheYapperz</div>
+        <img src="TheYapperzLogo.png" alt="Footer Image">
+    </footer>
+
+    <script>
+        // Scroll Animation
+        const sections = document.querySelectorAll('section');
+
+        const observer = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+            }
+        );
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

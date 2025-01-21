@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheYapperz Episodes</title>
+    <link rel="icon" type="theyapperzpodcast" sizes="32x32" href="TheYapperzLogo.png">
+    <style>
+        :root {
+            --primary-color: orange;
+            --secondary-color: blue;
+            --background-color: white;
+        }
+
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--secondary-color);
+            scroll-behavior: smooth;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--primary-color);
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--background-color);
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--background-color);
+            font-weight: bold;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        /* Underline Animation for Links */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--background-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Episodes Section */
+        .episodes-section {
+            padding: 20px;
+        }
+
+        .season-selector-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .season-selector {
+            padding: 10px;
+            background-color: var(--secondary-color);
+            color: var(--background-color);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .season-selector:hover {
+            background-color: darkblue;
+        }
+
+        .episodes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px 0;
+        }
+
+        .episode {
+            background-color: var(--background-color);
+            color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .episode img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .episode:hover {
+            transform: translateY(-10px);
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background-color: var(--background-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .popup.active {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .popup-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .popup-close {
+            background-color: transparent;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .popup-close:hover {
+            color: darkblue;
+        }
+
+        .popup iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .popup-description {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            text-align: left;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Footer Styles */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            margin-top: auto;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer ul li a {
+            color: var(--background-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: darkblue;
+        }
+
+        footer .logo {
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        footer img {
+            max-width: 130px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .banner {
+            background-image: url('https://yt3.googleusercontent.com/s4_dog4fxbcpMNPncjZWzgV07Ff4JD9uTQMcgzeGNiT9Px1IQA1WOQlCGHzQQpsaHFDllSHn=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner h2 {
+            font-size: 2.5rem;
+            color: var(--background-color);
+            animation: fadeIn 1s ease;
+            color: black;
+        }
+
+        header, footer {
+            -webkit-user-select: none; /* For Safari */
+            -moz-user-select: none;    /* For Firefox */
+            -ms-user-select: none;     /* For Internet Explorer */
+            user-select: none;         /* Standard Property */
+        }
+
+        .tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            opacity: 1; /* Always fully visible */
+            z-index: 2; /* Ensure it's always above the episode content */
+            display: block; /* Ensure it's displayed */
+        }
+
+        .episode:hover .tag {
+            transform: scale(1.1); /* Slightly enlarge on hover */
+            background-color: red; /* Change color for hover effect */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>TheYapperz</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="episodes.html">Episodes</a></li>
+                <li><a href="questions.html">Ask your Question</a></li>
+                <li><a href="quizzes.html">Quizzes</a></li>
+                <li><a href="partners.html">Partners & Sponsors</a></li>
+            </ul>
+        </nav>
+    </header>
+
+            <!-- Banner Section -->
+            <section class="banner white-background">
+                <div>
+                    <h2>Watch All Our Episodes</h2>
+                </div>
+            </section>
+
+    <main>
+        <!-- Episodes Section -->
+        <section class="episodes-section">
+            <div class="season-selector-container">
+                <h2 id="season-title">Season 1</h2>
+                <select class="season-selector" id="season-dropdown">
+                    <option value="season1" selected>Season 1</option>
+                    <option value="season2">Season 2</option>
+                </select>
+            </div>
+            <div class="episodes-container" id="season1">
+                <div class="episode" data-video="Episode 1.mp4" data-title="Episode 1: Discussing Marcellus Williams, World War III and Israel-Lebanon conflict" data-description="DESCRIPTION: In this episode, we dive into some of the most pressing topics in the world today. We start by exploring the story of Marcellus Williams, discussing the complexities of his case and its broader implications for justice and fairness in the legal system.
+                Next, we tackle the growing concerns about the possibility of World War III. What are the key events and tensions contributing to this fear, and how could they shape our future? We break down the situation to help you understand what’s at stake.Finally, we turn our attention to the ongoing conflict between Israel and Lebanon. We unpack the history, the key players, and the latest developments in this tense and volatile region, offering insights into what this means for global politics and regional stability.">
+                    <img src="Episode 1.avif" alt="Episode 1 Thumbnail">
+                    <h3>Episode 1: Discussing Marcellus Williams, World War III and Israel-Lebanon conflict</h3>
+                    <p>Season 1, Episode 1</p>
+                </div>
+                <div class="episode" data-video="Episode 2.mp4" data-title="Episode 2: Lebanon's Crisis Unveiled: Insightful Talks on Islam, Religion & Fun Quizzes!" data-description="DESCRIPTION: In this podcast video, we take a deep dive into the ongoing crisis in Lebanon, breaking down complex topics in a way that's easy to understand. Explore engaging conversations about Islam, religion, and the social issues shaping the region. But it’s not all serious talk – we keep things light and interactive with fun quizzes and thought-provoking questions to keep you entertained and involved. Whether you're curious about Lebanon’s current struggles or just love meaningful discussions with a touch of fun, this podcast has something for everyone. Tune in for a blend of knowledge, reflection, and entertainment!">
+                    <img src="Episode 2.avif" alt="Episode 2 Thumbnail">
+                    <h3>Episode 2: Lebanon's Crisis Unveiled: Insightful Talks on Islam, Religion & Fun Quizzes!</h3>
+                    <p>Season 1, Episode 2</p>
+                </div>
+                <div class="episode" data-video="Episode 3.mp4" data-title="Episode 3: The Assault on Al-Aqsa Hospital: A Podcast on the Crisis in Gaza" data-description="DESCRIPTION: This podcast video takes a deep dive into one of the most critical events unfolding in Gaza—the assault on Al-Aqsa Hospital. In this episode, we break down the devastating impact of the attack, not just on the hospital itself, but on the people who rely on it for safety, care, and hope in times of crisis.
+                We’ll explore the broader humanitarian crisis in Gaza, shedding light on the challenges faced by medical workers, patients, and families caught in the crossfire. Through interviews, expert insights, and real stories from the ground, this podcast provides a detailed yet approachable overview of the situation.        
+                Join us to learn more about the urgent need for awareness, compassion, and action as we uncover the human side of this unfolding tragedy.">
+                    <img src="Episode 3.avif" alt="Episode 2 Thumbnail">
+                    <h3>Episode 3: The Assault on Al-Aqsa Hospital: A Podcast on the Crisis in Gaza</h3>
+                    <p>Season 1, Episode 3</p>
+                </div>
+                <div class="episode" data-video="Episode 4.mp4" data-title="Episode 4: In-Depth Discussion on Halloween in Islam, Jinns and Fun Trivia Challenge" data-description="DESCRIPTION: Join us for an exciting podcast video where we dive deep into the fascinating topic of Halloween and its perspective in Islam. We'll explore the beliefs, traditions, and questions surrounding this holiday from an Islamic viewpoint. Plus, we'll discuss the intriguing world of jinns—what they are, their significance in Islamic teachings, and the mysteries surrounding them. To add a fun twist, we’ll end with an engaging trivia challenge to test your knowledge and keep things lighthearted. It’s an insightful and entertaining conversation you won’t want to miss!">
+                    <img src="Episode 4.avif" alt="Episode 2 Thumbnail">
+                    <h3>Episode 4: In-Depth Discussion on Halloween in Islam, Jinns and Fun Trivia Challenge</h3>
+                    <p>Season 1, Episode 4</p>
+                </div>
+                <div class="episode" data-video="Episode 5.mp4" data-title="Episode 5: A deeper discussion on Fousey's current state plus fun quizzes and games" data-description="DESCRIPTION: Join us for an engaging podcast episode where we dive deep into Fousey's current situation, exploring his experiences, challenges, and recent updates in a heartfelt discussion. But that's not all—stick around for plenty of laughs as we spice things up with entertaining quizzes and exciting games that you can play along with at home. Whether you're a longtime fan or just tuning in, this episode promises a mix of insightful conversation and lighthearted fun!">
+                    <img src="Episode 5.avif" alt="Episode 2 Thumbnail">
+                    <h3>Episode 5: A deeper discussion on Fousey's current state plus fun quizzes and games</h3>
+                    <p>Season 1, Episode 5</p>
+                </div>
+                <div class="episode" data-video="Episode 6.mp4" data-title="Episode 6: Discussion on Donald Trump's Victory and The Riots in Amsterdam" data-description="DESCRIPTION: In this podcast episode, we dive into two significant and impactful events shaping recent history. First, we discuss Donald Trump's election victory, examining the factors that contributed to his success and the reactions it sparked around the world. Then, we turn our attention to the riots in Amsterdam, exploring what led to the unrest, the aftermath, and how it reflects broader social and political tensions.">
+                    <img src="Episode 6.avif" alt="Episode 2 Thumbnail">
+                    <h3>Episode 6: Discussion on Donald Trump's Victory and The Riots in Amsterdam</h3>
+                    <p>Season 1, Episode 6</p>
+                </div>
+                <div class="episode" data-video="Episode 7.mp4" data-title="Episode 7: Jake Paul vs. Mike Tyson: Epic Fight Breakdown & Hilarious Quizzes You Can't Miss!" data-description="DESCRIPTION: In this exciting podcast episode, we talk about the much-anticipated Jake Paul vs. Mike Tyson fight! From breaking down the fighters’ strengths and styles to sharing bold predictions about how it might play out, we cover it all. Plus, we spice things up with hilarious quizzes and fun conversations you’ll love. Whether you’re a boxing fan or just here for the laughs, this episode is packed with entertaining insights and good vibes. Don’t miss out!">
+                    <img src="Episode 7.avif" alt="Episode 2 Thumbnail">
+                    <h3>Episode 7: Jake Paul vs. Mike Tyson: Epic Fight Breakdown & Hilarious Quizzes You Can't Miss!</h3>
+                    <p>Season 1, Episode 7</p>
+                </div>
+                <div class="episode" data-video="Episode 8.mp4" data-title="Episode 8: DJ Khaled Faces Major Backlash for Silence on Gaza - Plus Fun Quizzes to Test Your Knowledge!" data-description="DESCRIPTION: In this podcast episode, we dive into the controversy surrounding DJ Khaled and the public backlash he’s facing for staying silent about the situation in Gaza. We discuss the reactions, the expectations placed on celebrities, and the broader conversation around using platforms for social issues. To lighten the mood, we’ve added some fun quizzes to test your knowledge and keep things engaging. Tune in for an episode filled with thought-provoking discussions and a touch of entertainment you won’t want to miss!">
+                    <img src="Episode 8.avif" alt="Episode 2 Thumbnail">
+                    <h3>Episode 8: DJ Khaled Faces Major Backlash for Silence on Gaza - Plus Fun Quizzes to Test Your Knowledge!</h3>
+                    <p>Season 1, Episode 8</p>
+                </div>
+                <div class="episode" data-video="Episode 9.mp4" data-title="Episode 9: Fun Games by Adel & Engaging Muslim Topics" data-description="DESCRIPTION: Join Adel in this exciting podcast episode, where we blend fun and meaningful discussions! Dive into entertaining games that’ll keep you hooked, and explore engaging topics that resonate with the Muslim community. From thought-provoking conversations about faith and culture to lighthearted moments of laughter, this episode offers something for everyone. Whether you’re here for the games, the insights, or both, you’re in for a treat! Don’t miss out!">
+                    <img src="Episode 9.avif" alt="Episode 2 Thumbnail">
+                    <h3>Episode 9: Fun Games by Adel & Engaging Muslim Topics</h3>
+                    <p>Season 1, Episode 9</p>
+                </div>
+                <div class="episode" data-video="Episode 10.mp4" data-title="Episode 10: What’s Happening in Syria? The Role of Israel and Bashar al-Assad" data-description="DESCRIPTION: In this insightful podcast episode, we delve into the ongoing situation in Syria, exploring the key players and their impact. We break down the role of Bashar al-Assad in the country's political and humanitarian crisis and examine Israel’s involvement and influence in the region. With thought-provoking analysis and easy-to-understand explanations, this episode sheds light on the complexities of the conflict and the ripple effects on the global stage. Whether you’re well-versed in geopolitics or just curious to learn more, this is a must-listen episode!">
+                    <img src="Episode 10.avif" alt="Episode 2 Thumbnail">
+                    <h3>Episode 10: What’s Happening in Syria? The Role of Israel and Bashar al-Assad</h3>
+                    <p>Season 1, Episode 10</p>
+                </div>
+                <div class="episode" data-video="Episode 11.mp4" data-title="Episode 11: Reflection on the death of Palestinian grandfather Khaled Nabhan" data-description="DESCRIPTION: In this heartfelt episode, we pause to reflect on the life and tragic death of Khaled Nabhan, a Palestinian grandfather whose story has touched many around the world. We discuss the human side of the ongoing conflict, the impact of such losses on families and communities, and the resilience of those living through unimaginable challenges. Join us as we honor his memory, explore the broader context of his story, and reflect on what it means to hold onto hope and humanity in the face of hardship. A moving and thought-provoking episode you won’t want to miss.">
+                    <img src="Episode 11.avif" alt="Episode 2 Thumbnail">
+                    <h3>Episode 11: Reflection on the death of Palestinian grandfather Khaled Nabhan</h3>
+                    <p>Season 1, Episode 11</p>
+                </div>
+                <div class="episode" data-video="Episode 12.mp4" data-title="Episode 12: Exposing Omar Suleiman and Mufti Menk & The Dark Truth behind New years" data-description="DESCRIPTION: In this bold and thought-provoking episode, we dive into controversial discussions surrounding prominent figures like Omar Suleiman and Mufti Menk. What’s behind their messages, and how do they resonate with their audiences? We also explore the darker, often-overlooked history and implications of New Year’s celebrations from a deeper cultural and spiritual perspective. Get ready for an eye-opening conversation filled with insights, reflections, and questions that challenge mainstream narratives. Tune in for a compelling discussion you won’t want to miss!">
+                    <img src="Episode 12.avif" alt="Episode 2 Thumbnail">
+                    <h3>Episode 12: Exposing Omar Suleiman and Mufti Menk & The Dark Truth behind New years</h3>
+                    <p>Season 1, Episode 12</p>
+                </div>
+                <div class="episode" data-video="Episode 13.mp4" data-title="Episode 13: The Best Stories of the Prophet Muhammad & Theyapperz Taking a Break" data-description="DESCRIPTION: In this uplifting episode, we share some of the most inspiring and heartwarming stories from the life of the Prophet Muhammad (peace be upon him). These timeless lessons of compassion, wisdom, and resilience continue to inspire millions around the world. Plus, we have a special update—TheYapperz will be taking a short break! We’ll share the reasons behind the pause and what’s next for the podcast. Don’t worry, we’re coming back with even more engaging content soon. Tune in for this reflective and inspiring episode!">
+                    <img src="Episode 13.avif" alt="Episode 2 Thumbnail">
+                    <h3>Episode 13: The Best Stories of the Prophet Muhammad & Theyapperz Taking a Break</h3>
+                    <p>Season 1, Episode 13</p>
+                </div>
+                <div class="episode" data-video="Episode 14.mp4" data-title="Episode 14: How to overcome difficulties as muslims & Predicting the year 2025 " data-description="DESCRIPTION: Discover practical insights on overcoming challenges as Muslims in today's world while exploring predictions and possibilities for the year 2025. A thought-provoking discussion blending faith, resilience, and forward-thinking.">
+                    <span class="tag">LATEST</span>
+                    <img src="Episode 14.png" alt="Episode 14 Thumbnail">
+                    <h3>Episode 14: How to overcome difficulties as muslims & Predicting the year 2025</h3>
+                    <p>Season 1, Episode 14</p>
+                </div>
+                <!-- Add more episodes here -->
+            </div>
+        </section>
+
+        <!-- Popup Modal -->
+        <div class="overlay" id="overlay"></div>
+        <div class="popup" id="popup">
+            <div class="popup-header">
+                <span class="popup-title" id="popup-title"></span>
+                <button class="popup-close" id="popup-close">&times;</button>
+            </div>
+            <iframe src="" allowfullscreen></iframe>
+            <p class="popup-description" id="popup-description"></p>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <ul>
+            <h3>Follow us on:</h3>
+            <li><a href="https://x.com/theyapperz" target="_blank">X (Twitter)</a></li>
+            <li><a href="https://www.instagram.com/theyapperz/" target="_blank">Instagram</a></li>
+            <li><a href="https://www.youtube.com/@theyapperzpodcast/videos" target="_blank">YouTube</a></li>
+            <li><a href="https://www.tiktok.com/@theyapperz?lang=en" target="_blank">TikTok</a></li>
+            </li>
+        </ul>
+        <div class="logo">TheYapperz</div>
+        <img src="TheYapperzLogo.png" alt="Footer Image">
+    </footer>
+
+    <script>
+        // Handle season switching
+        const seasonDropdown = document.getElementById('season-dropdown');
+        const seasonTitle = document.getElementById('season-title');
+        const season1 = document.getElementById('season1');
+        const season2 = document.getElementById('season2');
+
+        seasonDropdown.addEventListener('change', (event) => {
+            const selectedSeason = event.target.value;
+            if (selectedSeason === 'season1') {
+                seasonTitle.textContent = 'Season 1';
+                season1.style.display = 'grid';
+                season2.style.display = 'none';
+            } else if (selectedSeason === 'season2') {
+                seasonTitle.textContent = 'Season 2';
+                season1.style.display = 'none';
+                season2.style.display = 'grid';
+            }
+        });
+
+        // Handle popup video functionality
+        const episodes = document.querySelectorAll('.episode');
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        const popupTitle = document.getElementById('popup-title');
+        const popupDescription = document.getElementById('popup-description');
+        const popupIframe = popup.querySelector('iframe');
+        const popupClose = document.getElementById('popup-close');
+
+        episodes.forEach(episode => {
+            episode.addEventListener('click', () => {
+                const videoUrl = episode.dataset.video;
+                const title = episode.dataset.title;
+                const description = episode.dataset.description;
+
+                popupTitle.textContent = title;
+                popupDescription.textContent = description;
+                popupIframe.src = videoUrl;
+                popup.classList.add('active');
+                overlay.classList.add('active');
+            });
+        });
+
+        popupClose.addEventListener('click', () => {
+            popup.classList.remove('active');
+            overlay.classList.remove('active');
+            popupIframe.src = '';
+        });
+
+        overlay.addEventListener('click', () => {
+            popup.classList.remove('active');
+            overlay.classList.remove('active');
+            popupIframe.src = '';
+        });
+    </script>
+</body>
+</html>

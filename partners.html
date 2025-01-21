@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="theyapperzpodcast" sizes="32x32" href="TheYapperzLogo.png">
+    <title>TheYapperz Partners & Sponsors</title>
+    <style>
+        :root {
+            --primary-color: orange;
+            --secondary-color: blue;
+            --background-color: white;
+        }
+
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            margin: 20px 0;
+        }
+
+        .partners-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .become-sponsor {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .become-sponsor button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .become-sponsor button:hover {
+            background-color: darkorange;
+        }
+
+              /* Footer Styles */
+              footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            margin-top: auto;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer ul li a {
+            color: var(--background-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: darkblue;
+        }
+
+        footer .logo {
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        footer img {
+            max-width: 130px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .banner {
+            background-image: url('https://yt3.googleusercontent.com/s4_dog4fxbcpMNPncjZWzgV07Ff4JD9uTQMcgzeGNiT9Px1IQA1WOQlCGHzQQpsaHFDllSHn=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner h2 {
+            font-size: 2.5rem;
+            color: var(--background-color);
+            animation: fadeIn 1s ease;
+            color: black;
+        }
+
+                       /* Header Styles */
+                       header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--primary-color);
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--background-color);
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--background-color);
+            font-weight: bold;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        /* Underline Animation for Links */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--background-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        header, footer {
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none;    /* For Firefox */
+    -ms-user-select: none;     /* For Internet Explorer */
+    user-select: none;         /* Standard Property */
+}
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>TheYapperz</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="episodes.html">Episodes</a></li>
+                <li><a href="questions.html">Ask your Question</a></li>
+                <li><a href="quizzes.html">Quizzes</a></li>
+                <li><a href="partners.html">Partners & Sponsors</a></li>
+            </ul>
+        </nav>
+    </header>
+
+     <!-- Banner Section -->
+     <section class="banner white-background">
+        <div>
+            <h2>Partners & Sponsors</h2>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <h2>Our Partners & Sponsors</h2>
+        <p>We currently do not have any partners. Interested in becoming a sponsor? Get in touch with us below!</p>
+
+        <!-- Become a Sponsor Section -->
+        <div class="become-sponsor">
+            <h2>Become a Sponsor</h2>
+            <p>Interested in partnering with TheYapperz?</p>
+            <p>Email us: afgsamsoor2005@gmail.com</p>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <ul>
+            <h3>Follow us on:</h3>
+            <li><a href="https://x.com/theyapperz" target="_blank">X (Twitter)</a></li>
+            <li><a href="https://www.instagram.com/theyapperz/" target="_blank">Instagram</a></li>
+            <li><a href="https://www.youtube.com/@theyapperzpodcast/videos" target="_blank">YouTube</a></li>
+            <li><a href="https://www.tiktok.com/@theyapperz?lang=en" target="_blank">TikTok</a></li>
+        </ul>
+        <div class="logo">TheYapperz</div>
+        <img src="TheYapperzLogo.png" alt="Footer Image">
+    </footer>
+</body>
+</html>

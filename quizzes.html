@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="theyapperzpodcast" sizes="32x32" href="TheYapperzLogo.png">
+    <title>Quizzes</title>
+    <style>
+        :root {
+            --primary-color: orange;
+            --secondary-color: blue;
+            --background-color: white;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--primary-color);
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--background-color);
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--background-color);
+            font-weight: bold;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        /* Underline Animation for Links */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--background-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            background-color: var(--background-color);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .quiz-question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: darkorange;
+            transform: scale(1.05);
+        }
+
+        /* Footer Styles */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            margin-top: auto;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer ul li a {
+            color: var(--background-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: darkblue;
+        }
+
+        footer .logo {
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        footer img {
+            max-width: 130px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .banner {
+            background-image: url('https://yt3.googleusercontent.com/s4_dog4fxbcpMNPncjZWzgV07Ff4JD9uTQMcgzeGNiT9Px1IQA1WOQlCGHzQQpsaHFDllSHn=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner h2 {
+            font-size: 2.5rem;
+            color: var(--background-color);
+            animation: fadeIn 1s ease;
+            color: black;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>TheYapperz</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="episodes.html">Episodes</a></li>
+                <li><a href="questions.html">Ask your Question</a></li>
+                <li><a href="quizzes.html">Quizzes</a></li>
+                <li><a href="partners.html">Partners & Sponsors</a></li>
+            </ul>
+        </nav>
+    </header>
+
+                <!-- Banner Section -->
+                <section class="banner white-background">
+                    <div>
+                        <h2>Quizzes & Answers</h2>
+                    </div>
+                </section>
+
+    <main>
+        <h2>Test Your Knowledge</h2>
+        <p>Click the button below to get a randomized question and challenge yourself!</p>
+
+        <div class="quiz-container">
+            <div class="quiz-question" id="quiz-question">
+                Click the button to get your first question.
+            </div>
+            <button id="randomize-question">Get Random Question</button>
+            <button id="show-answer" style="margin-top: 10px;">Show Answer</button>
+            <div class="quiz-answer" id="quiz-answer" style="margin-top: 15px; color: var(--secondary-color); font-weight: bold;"></div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <ul>
+            <h3>Follow us on:</h3>
+            <li><a href="https://x.com/theyapperz" target="_blank">X (Twitter)</a></li>
+            <li><a href="https://www.instagram.com/theyapperz/" target="_blank">Instagram</a></li>
+            <li><a href="https://www.youtube.com/@theyapperzpodcast/videos" target="_blank">YouTube</a></li>
+            <li><a href="https://www.tiktok.com/@theyapperz?lang=en" target="_blank">TikTok</a></li>
+            </li>
+        </ul>
+        <div class="logo">TheYapperz</div>
+        <img src="TheYapperzLogo.png" alt="Footer Image">
+    </footer>
+
+    <script>
+        let questions = [];
+        const usedQuestions = new Set();
+        const questionElement = document.getElementById('quiz-question');
+        const answerElement = document.getElementById('quiz-answer');
+        const randomizeButton = document.getElementById('randomize-question');
+        const showAnswerButton = document.getElementById('show-answer');
+
+        async function loadQuestions() {
+            try {
+                const response = await fetch('quizzes.json');
+                questions = await response.json();
+            } catch (error) {
+                questionElement.textContent = 'Failed to load questions. Please try again.';
+                console.error('Error loading questions:', error);
+            }
+        }
+
+        randomizeButton.addEventListener('click', () => {
+            if (questions.length === 0) {
+                questionElement.textContent = 'No questions available.';
+                return;
+            }
+
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * questions.length);
+            } while (usedQuestions.has(randomIndex));
+
+            usedQuestions.add(randomIndex);
+            const selectedQuestion = questions[randomIndex];
+
+            questionElement.textContent = selectedQuestion.question;
+            answerElement.textContent = ""; // Clear previous answer
+
+            showAnswerButton.onclick = () => {
+                answerElement.textContent = selectedQuestion.answer;
+            };
+
+            if (usedQuestions.size === questions.length) {
+                randomizeButton.disabled = true;
+                randomizeButton.textContent = 'No more questions!';
+            }
+        });
+
+        // Load questions when the page loads
+        loadQuestions();
+    </script>
+</body>
+</html>
