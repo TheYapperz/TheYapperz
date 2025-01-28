@@ -39998,5 +39998,201 @@
     {
         "question": "What is the capital of Afghanistan? (Variation 1000)",
         "answer": "Kabul."
+    },
+    {
+        "question": "What is the largest country in the world by area? (Variation 1001)",
+        "answer": "Russia."
+    },
+    {
+        "question": "Which country has the most population? (Variation 1002)",
+        "answer": "China."
+    },
+    {
+        "question": "What is the smallest country in the world? (Variation 1003)",
+        "answer": "Vatican City."
+    },
+    {
+        "question": "Which ocean is the largest? (Variation 1004)",
+        "answer": "The Pacific Ocean."
+    },
+    {
+        "question": "What is the capital of Japan? (Variation 1005)",
+        "answer": "Tokyo."
+    },
+    {
+        "question": "Which desert is the largest in the world? (Variation 1006)",
+        "answer": "The Sahara Desert."
+    },
+    {
+        "question": "What is the capital of Canada? (Variation 1007)",
+        "answer": "Ottawa."
+    },
+    {
+        "question": "What river is the longest in the world? (Variation 1008)",
+        "answer": "The Nile River."
+    },
+    {
+        "question": "What is the tallest mountain in the world? (Variation 1009)",
+        "answer": "Mount Everest."
+    },
+    {
+        "question": "What is the capital of Australia? (Variation 1010)",
+        "answer": "Canberra."
+    },
+    {
+        "question": "Which country has the most time zones? (Variation 1011)",
+        "answer": "France."
+    },
+    {
+        "question": "What is the capital of South Korea? (Variation 1012)",
+        "answer": "Seoul."
+    },
+    {
+        "question": "Which continent has the most countries? (Variation 1013)",
+        "answer": "Africa."
+    },
+    {
+        "question": "What is the capital of Brazil? (Variation 1014)",
+        "answer": "Brasília."
+    },
+    {
+        "question": "What is the deepest ocean trench in the world? (Variation 1015)",
+        "answer": "The Mariana Trench."
+    },
+    {
+        "question": "What is the capital of Germany? (Variation 1016)",
+        "answer": "Berlin."
+    },
+    {
+        "question": "What is the longest mountain range in the world? (Variation 1017)",
+        "answer": "The Andes."
+    },
+    {
+        "question": "What is the capital of India? (Variation 1018)",
+        "answer": "New Delhi."
+    },
+    {
+        "question": "What is the driest place on Earth? (Variation 1019)",
+        "answer": "The Atacama Desert."
+    },
+    {
+        "question": "What is the capital of Italy? (Variation 1020)",
+        "answer": "Rome."
+    },
+    {
+        "question": "Which continent is known as the 'Frozen Continent'? (Variation 1021)",
+        "answer": "Antarctica."
+    },
+    {
+        "question": "What is the capital of the United States? (Variation 1022)",
+        "answer": "Washington, D.C."
+    },
+    {
+        "question": "What is the largest island in the world? (Variation 1023)",
+        "answer": "Greenland."
+    },
+    {
+        "question": "What is the capital of the United Kingdom? (Variation 1024)",
+        "answer": "London."
+    },
+    {
+        "question": "Which country is also known as the Land of the Rising Sun? (Variation 1025)",
+        "answer": "Japan."
+    },
+    {
+        "question": "What is the capital of France? (Variation 1026)",
+        "answer": "Paris."
+    },
+    {
+        "question": "Which river flows through London? (Variation 1027)",
+        "answer": "The River Thames."
+    },
+    {
+        "question": "What is the capital of Spain? (Variation 1028)",
+        "answer": "Madrid."
+    },
+    {
+        "question": "What is the largest freshwater lake in the world? (Variation 1029)",
+        "answer": "Lake Superior."
+    },
+    {
+        "question": "What is the capital of Russia? (Variation 1030)",
+        "answer": "Moscow."
+    },
+    {
+        "question": "Which continent is home to the Amazon Rainforest? (Variation 1031)",
+        "answer": "South America."
+    },
+    {
+        "question": "What is the capital of China? (Variation 1032)",
+        "answer": "Beijing."
+    },
+    {
+        "question": "What is the smallest continent in the world? (Variation 1033)",
+        "answer": "Australia."
+    },
+    {
+        "question": "What is the capital of Egypt? (Variation 1034)",
+        "answer": "Cairo."
+    },
+    {
+        "question": "Which European country is known for its fjords? (Variation 1035)",
+        "answer": "Norway."
+    },
+    {
+        "question": "What is the capital of Saudi Arabia? (Variation 1036)",
+        "answer": "Riyadh."
+    },
+    {
+        "question": "Which river is the largest by discharge? (Variation 1037)",
+        "answer": "The Amazon River."
+    },
+    {
+        "question": "What is the capital of Thailand? (Variation 1038)",
+        "answer": "Bangkok."
+    },
+    {
+        "question": "What is the capital of Mexico? (Variation 1039)",
+        "answer": "Mexico City."
+    },
+    {
+        "question": "Which mountain range is found in North America? (Variation 1040)",
+        "answer": "The Rocky Mountains."
+    },
+    {
+        "question": "What is the capital of Kenya? (Variation 1041)",
+        "answer": "Nairobi."
+    },
+    {
+        "question": "What is the largest coral reef system in the world? (Variation 1042)",
+        "answer": "The Great Barrier Reef."
+    },
+    {
+        "question": "What is the capital of Argentina? (Variation 1043)",
+        "answer": "Buenos Aires."
+    },
+    {
+        "question": "Which sea is the saltiest in the world? (Variation 1044)",
+        "answer": "The Dead Sea."
+    },
+    {
+        "question": "What is the capital of Turkey? (Variation 1045)",
+        "answer": "Ankara."
+    },
+    {
+        "question": "Which African lake is the second largest freshwater lake in the world? (Variation 1046)",
+        "answer": "Lake Victoria."
+    },
+    {
+        "question": "What is the capital of Greece? (Variation 1047)",
+        "answer": "Athens."
+    },
+    {
+        "question": "Which country is the largest producer of coffee? (Variation 1048)",
+        "answer": "Brazil."
+    },
+    {
+        "question": "What is the capital of South Africa? (Variation 1049)",
+        "answer": "Pretoria."
     }
 ]
