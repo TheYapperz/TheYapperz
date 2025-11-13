@@ -322,22 +322,65 @@
                 transform: translateY(0);
             }
         }
+
+        /* Hamburger button hidden by default */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin-left: 10px;
+}
+
+/* Mobile layout */
+@media (max-width: 700px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background-color: var(--primary-color);
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  nav ul.showing {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  header h1 {
+    flex: 1 0 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
     </style>
 </head>
 <body>
     <!-- Header Section -->
-    <header>
-        <h1>TheYapperz</h1>
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="episodes.html">Episodes</a></li>
-                <li><a href="questions.html">Ask your Question</a></li>
-                <li><a href="quizzes.html">Quizzes</a></li>
-                <li><a href="partners.html">Partners & Sponsors</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <h1>TheYapperz</h1>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="episodes.html">Episodes</a></li>
+            <li><a href="questions.html">Ask your Question</a></li>
+            <li><a href="quizzes.html">Quizzes</a></li>
+            <li><a href="partners.html">Partners & Sponsors</a></li>
+        </ul>
+    </nav>
+</header>
 
             <!-- Banner Section -->
             <section class="banner white-background">
@@ -436,12 +479,29 @@
                     <p>Season 1, Episode 15</p>
                 </div>
                 <div class="episode" data-video="https://www.youtube.com/embed/tqWXHbBiAVs" data-title="Episode 16: Unlocking the spirit of Ramadan & fun quizzes" data-description=" DESCRIPTION: Discover the true essence of Ramadan in this engaging video, where we explore its deeper meaning, traditions, and significance. Along the way, challenge yourself with fun and interactive quizzes that test your knowledge while keeping things light and entertaining. Perfect for anyone looking to learn, reflect, and enjoy!">
-                    <span class="tag">LATEST</span>
                     <img src="Episode16.avif" alt="Episode 16 Thumbnail">
                     <h3>Episode 16: Unlocking the spirit of Ramadan & fun quizzes</h3>
                     <p>Season 1, Episode 16</p>
                 </div>
                 <!-- Add more episodes here -->
+            </div>
+            <div class="episodes-container" id="season2">
+                <div class="episode" data-video="https://www.youtube.com/embed/4MNffNHf5EA" data-title="Season 2 Episode 1: The Yapperz Return: Hajj Experiences, Social Media Controversies, and Food Quiz Showdown" data-description=" DESCRIPTION: In The Yapperz Return, the crew is back and louder than ever! They dive into unforgettable Hajj experiences, unpack the latest social media controversies, and test their taste buds in a hilarious food quiz showdown. Expect laughs, hot takes, and a whole lot of chaos as The Yapperz make their long-awaited comeback.">
+                    <img src="Episode17.avif" alt="Episode 17 Thumbnail">
+                    <h3>Episode 1: The Yapperz Return: Hajj Experiences, Social Media Controversies, and Food Quiz Showdown</h3>
+                    <p>Season 2, Episode 1</p>
+                </div>
+                <div class="episode" data-video="https://www.youtube.com/embed/ee7fekMyLJ8" data-title="Season 2 Episode 2: Exposing Fake Ceasefires & Influencer Hypocrisy" data-description=" DESCRIPTION: In this episode, we break down the truth behind so-called “ceasefires” that aren’t what they seem — revealing how powerful narratives are used to manipulate public perception. We also call out the wave of influencer hypocrisy: those who preach morality online while staying silent when it actually matters. It’s time to cut through the PR tactics, expose performative activism, and demand real accountability.">
+                    <img src="Episode18.avif" alt="Episode 17 Thumbnail">
+                    <h3>Episode 2: Exposing Fake Ceasefires & Influencer Hypocrisy</h3>
+                    <p>Season 2, Episode 2</p>
+                </div>
+                <div class="episode" data-video="https://www.youtube.com/embed/idKUedPiMWg" data-title="Season 2 Episode 3: Can Muslims Take Money for Dawah? + TikTok Battles, Food Debates & Fun Games!" data-description=" DESCRIPTION: In this episode, we dive into a thought-provoking discussion — Can Muslims take money for doing Dawah? We explore different perspectives on the topic and what Islam says about sharing knowledge for compensation. Plus, we bring the energy with some lively TikTok battle talk, food debates, and fun games you won’t want to miss. Tune in for a mix of serious reflection and lighthearted entertainment.">
+                    <span class="tag">LATEST</span>
+                    <img src="Episode19.avif" alt="Episode 17 Thumbnail">
+                    <h3>Episode 3: Can Muslims Take Money for Dawah? + TikTok Battles, Food Debates & Fun Games!</h3>
+                    <p>Season 2, Episode 3</p>
+                </div>
             </div>
         </section>
 
@@ -526,5 +586,11 @@
             popupIframe.src = '';
         });
     </script>
+
+    <script>
+function toggleMenu() {
+  document.querySelector('nav ul').classList.toggle('showing');
+}
+</script>
 </body>
 </html>
